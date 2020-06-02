@@ -1,0 +1,39 @@
+{
+  "name": "react-ts",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@progress/kendo-drawing": "^1.5.12",
+    "@progress/kendo-react-animation": "^3.13.0",
+    "@progress/kendo-react-dialogs": "^3.14.0",
+    "@progress/kendo-react-dropdowns": "^3.14.0",
+    "@progress/kendo-react-inputs": "^3.14.0",
+    "@progress/kendo-react-intl": "^3.13.0",
+    "@progress/kendo-react-notification": "^3.14.0",
+    "@progress/kendo-theme-default": "^4.18.2",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/redux-logger": "3.0.7",
+    "lodash": "^4.17.15",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "4.0.5",
+    "redux-devtools-extension": "2.13.8",
+    "redux-logger": "4.0.0",
+    "redux-observable": "1.2.0",
+    "redux-persist": "6.0.0",
+    "redux-thunk": "2.3.0",
+    "rxjs": "6.5.5"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "react-scripts-ts": "latest"
+  }
+}

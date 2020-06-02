@@ -1,0 +1,27 @@
+h1, p {
+  font-family: Lato;
+}
+
+.k-combobox {
+  width: 100%;
+}
+
+.k-numerictextbox {
+  width: 100%;
+}
+
+.fa {
+  cursor: pointer;
+}
+
+   .k-notification-container {
+        margin: 8px;
+    }
+
+    .k-notification-wrap {
+        padding: 8px 10px;
+    }
+
+      .form-error {
+    border: 1px solid red !important;
+  }
