@@ -115,7 +115,7 @@ export const initialState = {
             },
             {
               ColumnName: 'RequestSubType',
-              FieldType: 'DropDown',
+              FieldType: 'DropDownMulti',
               FieldSortOrder: 14,
               FieldCssClass: 'col-sm-4',
               LookupType: 'CascadingBased',

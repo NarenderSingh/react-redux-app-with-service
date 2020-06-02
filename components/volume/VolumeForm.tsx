@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 import { Notification, NotificationGroup } from '@progress/kendo-react-notification';
-import { addNewRow, inputChange, deleteRmvRow } from '../../redux/actions/volumeActions';
+import { addNewRow, inputChange, deleteRmvRow, fillRmvFieldData } from '../../redux/actions/volumeActions';
 import { FIELD_TYPES } from './IVolume';
 import RSDropDown from '../controls/DropDown';
 import RSMultiSelect from '../controls/MultiSelect';
@@ -11,7 +11,7 @@ import RSNumericTextBox from '../controls/NumericTextBox';
 const initialRmvFields = [];
 
 const VolumeForm = (props: any) => {
-  const { rmvField, addNewRow, dispatchInputChange, dispatchDelete, volume, dataSet } = props;
+  const { rmvField, addNewRow, dispatchInputChange, dispatchDelete, volume, dataSet, fillRmvFieldData } = props;
 
   if (!rmvField.hasOwnProperty("Controls"))
     return null;
@@ -24,6 +24,9 @@ const VolumeForm = (props: any) => {
   const [successMessage, setSuccessMessage] = useState({ visible: false, message: null });
   const [errorMessage, setErrorMessage] = useState({ visible: false, message: null });
 
+  useEffect(() => {
+    fillRmvFieldData();
+  }, [])
   // console.log("DATASET", dataSet);
 
   const headers = rmvField.Controls[0];
@@ -225,11 +228,12 @@ const VolumeForm = (props: any) => {
   const renderField = (field: any, rowIndex: number) => {
     switch (field.FieldType) {
       case FIELD_TYPES.DROPDOWN: {
-        const data = getDropDownData(field).dropdownData;
+        // const data = getDropDownData(field).dropdownData;
 
         const _field: any = {
           fieldName: field.ColumnName,
-          data: data,
+          // data: data,
+          data: field.Data,
           placeholder: field.PlaceholderText,
           isRequired: field.IsRequired,
           validationMessage: field.ValidationMessage,
@@ -242,18 +246,19 @@ const VolumeForm = (props: any) => {
         return <RSDropDown {..._field} />;
       }
       case FIELD_TYPES.DROPDOWN_MULTI: {
-        const data = getDropDownData(field).dropdownData;
-        const fieldValue = getDropDownData(field).fieldValue;
+        // const data = getDropDownData(field).dropdownData;
+        // const fieldValue = getDropDownData(field).fieldValue;
 
         const _field: any = {
           fieldName: field.ColumnName,
-          data: data,
+          // data: data,
+          data: field.Data,
           placeholder: field.PlaceholderText,
           isRequired: field.IsRequired,
           validationMessage: field.ValidationMessage,
           textField: field.DataItemText,
           dataItemKey: field.DataItemKey,
-          fieldValue: fieldValue,
+          fieldValue: field.FieldValue,
           onChange: (e: any) => inputChange(e, field, rowIndex)
         };
 
@@ -412,7 +417,8 @@ const mapStateToProps = (state) => ({
 const mapDispachToProps = (dispatch) => ({
   addNewRow: (payload) => dispatch(addNewRow(payload)),
   dispatchInputChange: (payload) => dispatch(inputChange(payload)),
-  dispatchDelete: (payload) => dispatch(deleteRmvRow(payload))
+  dispatchDelete: (payload) => dispatch(deleteRmvRow(payload)),
+  fillRmvFieldData: () => dispatch(fillRmvFieldData())
 })
 
 export default connect(mapStateToProps, mapDispachToProps)(VolumeForm);
